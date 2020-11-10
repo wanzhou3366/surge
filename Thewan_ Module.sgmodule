@@ -1,0 +1,42 @@
+#!name=Thewan Module
+#!desc=iOS Thewan 模块配置
+#!system=ios
+
+[Script]
+# 京东--浏览器登录 https://bean.m.jd.com
+京东多合一签到 = type=cron,cronexp=6 0 * * *,wake-system=1,timeout=20,script-path=https://raw.githubusercontent.com/NobyDa/Script/master/JD-DailyBonus/JD_DailyBonus.js
+
+# 京东系列
+cron "5 6-18/6 * * *" script-path=https://raw.githubusercontent.com/lxk0301/jd_scripts/master/jd_fruit.js, timeout=30, wake-system=1,tag=东东农场
+cron "10 7-19/6 * * *" script-path=https://raw.githubusercontent.com/lxk0301/jd_scripts/master/jd_pet.js,timeout=30, wake-system=1,tag=东东萌宠
+cron "1 7-21/2 * * *" script-path=https://raw.githubusercontent.com/lxk0301/jd_scripts/master/jd_plantBean.js,timeout=630, wake-system=1,tag=京东种豆得豆
+cron "8 */3 * * *" script-path=https://raw.githubusercontent.com/lxk0301/jd_scripts/master/jd_speed.js,timeout=130, wake-system=1,tag=京东天天加速
+cron "11 1-23/2 * * *" script-path=https://raw.githubusercontent.com/lxk0301/jd_scripts/master/jd_superMarket.js,timeout=530, wake-system=1,tag=京小超
+cron "0 0 0 * * *" script-path=https://raw.githubusercontent.com/lxk0301/jd_scripts/master/jd_blueCoin.js,timeout=30, wake-system=1,tag=京小超兑换奖品
+cron "55 23 * * *" script-path=https://raw.githubusercontent.com/lxk0301/jd_scripts/master/jd_unsubscribe.js,timeout=250, wake-system=1,tag=取关京东店铺商品
+cron "10 0 * * *" script-path=https://raw.githubusercontent.com/lxk0301/jd_scripts/master/jd_shop.js,timeout=30,timeout=30, wake-system=1,tag=进店领豆
+cron "5 0 * * *" script-path=https://raw.githubusercontent.com/lxk0301/jd_scripts/master/jd_club_lottery.js, timeout=50,wake-system=1, tag=摇京豆
+京东星推官 = type=cron,cronexp=0 0 * * *,wake-system=1,timeout=650,script-path=https://raw.githubusercontent.com/lxk0301/jd_scripts/master/jd_xtg.js,enable=false
+cron "1 1 * * *" script-path=https://raw.githubusercontent.com/lxk0301/jd_scripts/master/jd_redPacket.js, wake-system=1, tag=京东全民开红包
+cron "2 9 * * *" script-path=https://raw.githubusercontent.com/lxk0301/jd_scripts/master/jd_bean_change.js,timeout=650, wake-system=1, tag=京豆变动通知
+cron "20 * * * *" script-path=https://raw.githubusercontent.com/lxk0301/jd_scripts/master/jd_collectProduceScore.js, wake-system=1, tag=京东全民营业领金币
+cron "20 5 * * *" script-path=https://raw.githubusercontent.com/lxk0301/jd_scripts/master/jd_blueCoin.js,timeout=30, timeout=30, wake-system=1, tag=京小超领蓝币(兑换京豆)
+京东抽奖机 = type=cron,cronexp=11 1 * * *,wake-system=1,timeout=20,script-path=https://raw.githubusercontent.com/yangtingxiao/QuantumultX/master/scripts/jd/jd_lotteryMachine.js
+cron "11 9 * * *" script-path=https://raw.githubusercontent.com/yangtingxiao/QuantumultX/master/scripts/jd/jd_rankingList.js,tag=京东排行榜
+# 京东物流
+cron "0 12 * * *" script-path=https://raw.githubusercontent.com/id77/QuantumultX/master/task/jdWuLiu.js
+# 微博通知
+cron "0 * * * *" script-path=https://raw.githubusercontent.com/zZPiglet/Task/master/Weibo/Weibo.js,wake-system=1, tag=微博通知
+# 网易云音乐
+cron "3 0 * * *" script-path=https://raw.githubusercontent.com/chavyleung/scripts/master/neteasemusic/neteasemusic.js
+
+
+# 京东历史价格
+http-response ^https?://api\.m\.jd\.com/client\.action\?functionId=(wareBusiness|serverConfig|basicConfig) requires-body=1,script-path=https://raw.githubusercontent.com/yichahucha/surge/master/jd_price_lite.js, tag=京东比价 Lite(通知版)
+# 淘宝比价
+http-request ^http://.+/amdc/mobileDispatch requires-body=1,script-path=https://raw.githubusercontent.com/yichahucha/surge/master/tb_price_lite.js, tag=淘宝比价1 Lite(通知版)
+http-response ^https?://trade-acs\.m\.taobao\.com/gw/mtop\.taobao\.detail\.getdetail requires-body=1,script-path=https://raw.githubusercontent.com/yichahucha/surge/master/tb_price_lite.js, tag=淘宝比价2 Lite(通知版)
+淘宝比价1 = type=http-response,pattern=^https?://trade-acs\.m\.taobao\.com/gw/mtop\.taobao\.detail\.getdetail,requires-body=1,max-size=0,script-path=https://raw.githubusercontent.com/yichahucha/surge/master/tb_price.js,script-update-interval=0
+淘宝比价2 = type=http-request,pattern=^http://.+/amdc/mobileDispatch,requires-body=1,max-size=0,script-path=https://raw.githubusercontent.com/yichahucha/surge/master/tb_price.js,script-update-interval=0
+抖音去广告&水印req = type=http-request,pattern=^https?:\/\/.+?\.amemv\.com\/aweme\/v\d\/(feed|aweme\/post|follow\/feed|nearby\/feed|search\/item|general\/search\/single|hot\/search\/video\/list)\/,script-path=https://raw.githubusercontent.com/NobyDa/Script/master/Surge/JS/Aweme.js
+抖音去广告&水印res = type=http-response,pattern=^https?:\/\/.+?\.amemv\.com\/aweme\/v\d\/(feed|aweme\/post|follow\/feed|nearby\/feed|search\/item|general\/search\/single|hot\/search\/video\/list)\/,requires-body=1,max-size=0,script-path=https://raw.githubusercontent.com/NobyDa/Script/master/Surge/JS/Aweme.js

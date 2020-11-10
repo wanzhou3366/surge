@@ -1,0 +1,105 @@
+#!name=Thewan strategy
+#!desc=Thewan strategy
+
+[General]
+# 日志等级 warning, notify, info, verbose (默认: notify)
+loglevel = notify
+# 网络诊断
+# > Internet 测试 URL
+internet-test-url = http://www.aliyun.com
+# > 代理测速 URL
+proxy-test-url = http://www.google.com/generate_204
+# > 测速超时 (s)
+test-timeout = 3
+# IPv6 支持
+ipv6 = false
+# Wi-Fi 访问
+# > 允许 Wi-Fi 网络下其它设备访问
+allow-wifi-access = true
+# > HTTP 代理服务端口（默认 "6152"）
+# wifi-access-http-port = 6152
+# > SOCKS5 代理服务端口（默认 "6153"）
+# wifi-access-socks5-port = 6153
+# 外部控制器
+external-controller-access = admin@127.0.0.1:6170
+# 兼容性
+# > 兼容模式（默认 "禁用"）
+# compatibility-mode = 0
+# > 跳过某个域名或者IP段
+skip-proxy = 192.168.0.0/16, 193.168.0.0/24, 10.0.0.0/8, 172.16.0.0/12, 100.64.0.0/10, 17.0.0.0/8, 127.0.0.1, localhost, *.local
+bypass-system = true
+# 实验性支持
+# > TLS Provider: default, secure-transport, network-framework, openssl (默认: default)
+tls-provider = default
+# > 启动 Network.framework（默认不启用）
+network-framework = false
+# 其他（请先阅读手册，除非你明确知道其含义，否则不要修改任何设置）
+# > Show Reject Error Page
+show-error-page-for-reject = true
+# > Hijack DNS
+# hijack-dns =
+# > TCP Force HTTP Hosts
+# force-http-engine-hosts = example.com:80
+# > VIF Excluded Routes
+tun-excluded-routes = 192.168.0.0/16, 10.0.0.0/8, 172.16.0.0/12
+# > VIF Included Routes
+tun-included-routes = 192.168.1.12/32
+# DNS 服务器
+dns-server = 119.29.29.29,223.5.5.5,system
+
+[Replica]
+# [抓取流量] => 过滤器
+# > 隐藏 Apple 请求
+hide-apple-request = true
+# > 隐藏 Crashlytics 请求
+hide-crashlytics-request = true
+# > 隐藏 UDP 会话
+hide-udp = false
+# > 关键词过滤器
+keyword-filter-type = (null)
+keyword-filter = icloud,ocsp,logs,analytic,ads,imap,adthor,applovin,appnext,talk,dropbox,spys
+
+[Proxy]
+🚫 拦截反馈 = reject-tinygif
+🚫 广告拦截 = reject
+🎯 直接连接 = direct
+🎧 = http, music.desperadoj.com, 30002, username=Netease Music, password=none
+
+[Proxy Group]
+🔰 节点选择 = select, ♻️ 延迟最低, ⛔️ 故障切换, 🌀 手动选择
+🖥 Netflix = select, policy-path=订阅地址
+🎧 网易云音乐 = select, 🎧, 🎯 直接连接
+📱 苹果服务 = select, 🎯 直接连接, 🔰 节点选择
+🐳 漏网之鱼 = select, 🔰 节点选择, 🎯 直接连接
+🌀 手动选择 = select, policy-path=订阅地址
+♻️ 延迟最低 = url-test, policy-path=订阅地址, url=http://www.gstatic.com/generate_204, interval=600, tolerance=50
+⛔️ 故障切换 = fallback, policy-path=订阅地址, url=http://www.gstatic.com/generate_204, interval=600, tolerance=50
+🚫 全球拦截 = select, 🚫 广告拦截, 🚫 拦截反馈, 🎯 直接连接
+
+[Rule]
+# CUSTOM RULE
+# Rulesets (by eHpo1 + ConnersHua）
+RULE-SET,https://raw.githubusercontent.com/DivineEngine/Profiles/master/Surge/Ruleset/Guard/Advertising.list,🚫 全球拦截
+RULE-SET,https://raw.githubusercontent.com/DivineEngine/Profiles/master/Surge/Ruleset/Guard/Hijacking.list,🚫 全球拦截
+RULE-SET,https://raw.githubusercontent.com/DivineEngine/Profiles/master/Surge/Ruleset/Guard/Privacy.list,🚫 全球拦截
+# > Apple
+RULE-SET,https://raw.githubusercontent.com/eHpo1/Rules/master/Surge4/Ruleset/Apple_API.list,📱 苹果服务
+RULE-SET,https://raw.githubusercontent.com/eHpo1/Rules/master/Surge4/Ruleset/Apple_CDN.list,🎯 直接连接
+# >Unlock NeteaseMusic
+RULE-SET,https://raw.githubusercontent.com/lhie1/Rules/master/Surge/Surge%203/Provider/Media/Netease%20Music.list,🎧 网易云音乐
+# > GlobalMedia
+RULE-SET,https://raw.githubusercontent.com/eHpo1/Rules/master/Surge4/Ruleset/GlobalMedia.list,🔰 节点选择
+# > Global
+RULE-SET,https://raw.githubusercontent.com/eHpo1/Rules/master/Surge4/Ruleset/Global.list,🔰 节点选择
+# > AsianMedia
+RULE-SET,https://raw.githubusercontent.com/eHpo1/Rules/master/Surge4/Ruleset/AsianMedia.list,🎯 直接连接
+# > Domestic
+RULE-SET,https://raw.githubusercontent.com/eHpo1/Rules/master/Surge4/Ruleset/Domestic.list,🎯 直接连接
+# LAN / GeoIP,CN
+RULE-SET,https://raw.githubusercontent.com/eHpo1/Rules/master/Surge4/Ruleset/Region.list,🎯 直接连接
+URL-REGEX,^https:\/\/.+\.googlevideo\.com\/.+&oad,REJECT
+# Local Area Network
+RULE-SET,LAN,🎯 直接连接
+# GeoIP China
+GEOIP,CN,🎯 直接连接
+FINAL,🐳 漏网之鱼,dns-failed

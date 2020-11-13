@@ -34,7 +34,6 @@ cron "0 12 * * *" script-path=https://raw.githubusercontent.com/id77/QuantumultX
 
 # 其他类型
 cron "30 0 8-22/2 * * *" script-path=https://raw.githubusercontent.com/evilbutcher/Quantumult_X/master/check_in/hotsearch/hot.js, tag=热门监控
-cron "30 8-22 * * *" script-path=https://raw.githubusercontent.com/Peng-YM/QuanX/master/Tasks/caiyun.js, tag=彩云天气
 # 京东历史价格
 http-response ^https?://api\.m\.jd\.com/client\.action\?functionId=(wareBusiness|serverConfig|basicConfig) requires-body=1,script-path=https://raw.githubusercontent.com/yichahucha/surge/master/jd_price_lite.js, tag=京东比价 Lite(通知版)
 # 淘宝比价

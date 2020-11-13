@@ -16,7 +16,6 @@ cron "0 0 0 * * *" script-path=https://raw.githubusercontent.com/lxk0301/jd_scri
 cron "55 23 * * *" script-path=https://raw.githubusercontent.com/lxk0301/jd_scripts/master/jd_unsubscribe.js,timeout=250, wake-system=1,tag=取关京东店铺商品
 cron "10 0 * * *" script-path=https://raw.githubusercontent.com/lxk0301/jd_scripts/master/jd_shop.js,timeout=30,timeout=30, wake-system=1,tag=进店领豆
 cron "5 0 * * *" script-path=https://raw.githubusercontent.com/lxk0301/jd_scripts/master/jd_club_lottery.js, timeout=50,wake-system=1, tag=摇京豆
-京东星推官 = type=cron,cronexp=0 0 * * *,wake-system=1,timeout=650,script-path=https://raw.githubusercontent.com/lxk0301/jd_scripts/master/jd_xtg.js,enable=false
 cron "1 1 * * *" script-path=https://raw.githubusercontent.com/lxk0301/jd_scripts/master/jd_redPacket.js, wake-system=1, tag=京东全民开红包
 cron "15 10 * * *" script-path=https://raw.githubusercontent.com/lxk0301/jd_scripts/master/jd_joy_run.js, timeout=30, tag=宠汪汪邀请助力与赛跑助力
 cron "20 7 8 * * *" script-path=https://raw.githubusercontent.com/chavyleung/scripts/master/wykl/wykl.js,tag=网易考拉
@@ -28,11 +27,7 @@ cron "11 9 * * *" script-path=https://raw.githubusercontent.com/yangtingxiao/Qua
 cron "5 0 * * *" script-path=https://raw.githubusercontent.com/toulanboy/scripts/master/jd_price_detect/jd_price_detect.js, tag=京东价格提醒
 
 # yangtingxiao
-cron "5 9-22 * * *" script-path=https://raw.githubusercontent.com/yangtingxiao/QuantumultX/master/scripts/jd/jd_bigWinner.js, tag=京东大赢家
 cron "10 1 * * *" script-path=https://raw.githubusercontent.com/yangtingxiao/QuantumultX/master/scripts/ttwk/ttwk.js, tag=天天挖矿
-cron "20 0-20/4 * * *" script-path=https://raw.githubusercontent.com/yangtingxiao/QuantumultX/master/scripts/jd/jd_timeMachine.js, tag=京东时光机
-cron "5 9 * * *" script-path=https://raw.githubusercontent.com/yangtingxiao/QuantumultX/master/scripts/jd/jd_starStore.js, tag=京东星店长
-cron "11 1 * * *" script-path=https://raw.githubusercontent.com/yangtingxiao/QuantumultX/master/scripts/jd/jd_lotteryMachine.js, tag=京东抽奖机
 
 # 京东物流
 cron "0 12 * * *" script-path=https://raw.githubusercontent.com/id77/QuantumultX/master/task/jdWuLiu.js
